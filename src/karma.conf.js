@@ -1,13 +1,19 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+const getIp = require('../getIp');
+
+const karmaBrowsers = (process.env.KARMA_BROWSERS || 'Chrome').split(',');
+
 module.exports = function (config) {
   config.set({
+    hostname: getIp() || 'localhost',
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-webdriver-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -20,12 +26,30 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
+    customLaunchers: {
+      selenium_chrome: {
+        base: 'WebDriver',
+        config: {
+          desiredCapabilities: {
+            //capabilities of driver
+          },
+          host: process.env.SELENIUM_HOST || 'localhost',
+          port: 4444,
+          path: '/wd/hub'
+        },
+        name: 'Karma',
+        browserName: 'chrome'
+      }
+    },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    browsers: karmaBrowsers,
+    singleRun: process.env.KARMA_SINGLE_RUN || false,
+    captureTimeout: 30000,
+    browserDisconnectTimeout: 30000,
+    browserNoActivityTimeout: 30000
   });
 };

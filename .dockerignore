@@ -3,9 +3,9 @@
 .git
 
 # CodeShip
-#codeship-services.yml
-#codeship-steps.yml
-#Dockerfile
+codeship-services.yml
+codeship-steps.yml
+Dockerfile
 
 # compiled output
 dist
@@ -13,7 +13,7 @@ tmp
 out-tsc
 
 # dependencies
-#/node_modules
+node_modules
 
 # IDEs and editors
 .idea

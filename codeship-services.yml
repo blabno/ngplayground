@@ -3,12 +3,15 @@ frontend:
     image: ngplayground
     context: .
     dockerfile: Dockerfile
-#  environment:
-#    - SELENIUM_HOST=selenium
-#    - KARMA_SINGLE_RUN=true
-#    - KARMA_BROWSERS=selenium_chrome
-#  links:
-#    - selenium
-#selenium:
-#  image: selenium/standalone-chrome:3.12.0
-#  cached: true
+  environment:
+    - SELENIUM_HOST=selenium
+    - KARMA_SINGLE_RUN=true
+    - KARMA_BROWSERS=selenium_chrome
+    - COVERALLS_REPO_TOKEN=KHSgMKdKp4rprGh6AjxywT0vmhyJWMLfp
+  links:
+    - selenium
+  volumes:
+    - ./node_modules:/app/node_modules
+selenium:
+  image: selenium/standalone-chrome:3.12.0
+  cached: true

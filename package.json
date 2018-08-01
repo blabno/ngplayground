@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "coverage": "ng test --code-coverage --watch=false",
-    "coverallsx": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "coveralls": "if test ${CI_NAME+x} ; then cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi",
+    "postcoverage": "if test ${CI_NAME+x} ; then COVERALLS_SERVICE_NAME=Codeship COVERALLS_GIT_COMMIT=$CI_COMMIT_ID COVERALLS_SERVICE_JOB_ID=$CI_BUILD_ID cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -45,6 +44,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-webdriver-launcher": "1.0.5",
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
