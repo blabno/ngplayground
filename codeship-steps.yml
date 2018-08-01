@@ -1,0 +1,3 @@
+- name: lint
+  service: frontend
+  command: npm run lint
