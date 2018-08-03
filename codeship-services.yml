@@ -3,11 +3,11 @@ frontend:
     image: ngplayground
     context: .
     dockerfile: Dockerfile
+  encrypted_env_file: codeship.env.encrypted
   environment:
     - SELENIUM_HOST=selenium
     - KARMA_SINGLE_RUN=true
     - KARMA_BROWSERS=selenium_chrome
-    - COVERALLS_REPO_TOKEN=KHSgMKdKp4rprGh6AjxywT0vmhyJWMLfp
   links:
     - selenium
 selenium:

@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "coverage": "ng test --code-coverage --watch=false",
-    "postcoverage": "if test ${CI_NAME+x} ; then COVERALLS_SERVICE_NAME=Codeship COVERALLS_GIT_COMMIT=$CI_COMMIT_ID COVERALLS_SERVICE_JOB_ID=$CI_BUILD_ID cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi",
+    "postcoverage": "if test ${COVERALLS_REPO_TOKEN+x} ; then COVERALLS_SERVICE_NAME=Codeship COVERALLS_GIT_COMMIT=$CI_COMMIT_ID COVERALLS_SERVICE_JOB_ID=$CI_BUILD_ID cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
