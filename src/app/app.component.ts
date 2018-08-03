@@ -7,7 +7,7 @@ import { MOMENT, MomentFactory } from './moment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'ngplayground';
 
   constructor(@Inject(MOMENT) public moment: MomentFactory) {
   }
